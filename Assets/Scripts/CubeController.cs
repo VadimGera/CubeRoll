@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CubeController : MonoBehaviour
+
+public partial class CubeController : MonoBehaviour
 {
     [SerializeField] private float _rollSpeed = 5f;
     private Vector3 _axis;
@@ -17,29 +18,8 @@ public class CubeController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
-        if(_isMoving) return;
-        
-        if (Input.GetKey(KeyCode.A))
-        {
-            Move(Vector3.left);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            Move(Vector3.right);
-        } 
-        else if (Input.GetKey(KeyCode.W))
-        {
-            Move(Vector3.forward);
-        } 
-        else if (Input.GetKey(KeyCode.S))
-        {
-            Move(Vector3.back);
-        }
-    }
 
-    private void Move(Vector3 direction)
+    public void Move(Vector3 direction)
     {
         var isGrounded = CheckIsGrounded();
         if (!isGrounded)
@@ -60,15 +40,7 @@ public class CubeController : MonoBehaviour
         StartCoroutine(Roll(_pivotPoint, _axis));
     }
 
-    private bool CheckIsGrounded()
-    {
-        return Physics.Raycast(transform.position, Vector3.down, 0.51f);
-    }
-
-    private bool HasWallInDirection(Vector3 direction)
-    {
-        return Physics.Raycast(transform.position, direction, 0.51f);
-    }
+    
 
     private IEnumerator Roll(Vector3 pivot, Vector3 axis)
     {
