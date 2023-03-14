@@ -3,13 +3,27 @@
 public static class BlockChecker
 {
     private const float VectorLength = 0.55f;
-    private bool CheckIsGrounded(Vector3 position)
+
+    public static bool CheckIsGrounded(Vector3 position)
     {
         return Physics.Raycast(position, Vector3.down, VectorLength);
     }
 
-    private bool HasWallInDirection(Vector3 position, Vector3 direction)
+    public static bool HasWallInDirection(Vector3 position, Vector3 direction)
     {
         return Physics.Raycast(position, direction, VectorLength);
     }
+
+
+
+    public static void SnapPositionInteger(Transform transform)
+    {
+        var pos = transform.position;
+        pos.x = Mathf.Round(pos.x);
+        pos.z = Mathf.Round(pos.z);
+
+        transform.position = pos;
+    }
+
+
 }

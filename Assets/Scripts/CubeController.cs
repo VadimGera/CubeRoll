@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-public partial class CubeController : MonoBehaviour
+public class CubeController : MonoBehaviour
 {
     [SerializeField] private float _rollSpeed = 5f;
     private Vector3 _axis;
@@ -21,21 +21,23 @@ public partial class CubeController : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
-        var isGrounded = CheckIsGrounded();
+        if(_isMoving) return;
+        
+        var isGrounded = BlockChecker.CheckIsGrounded(transform.position);
         if (!isGrounded)
         {
             return;
         }
         
         var verticalComponent = Vector3.down;
-        var hasWall = HasWallInDirection(direction);
+        var hasWall = BlockChecker.HasWallInDirection(transform.position, direction);
         if (hasWall)
         {
             verticalComponent = Vector3.up;
         }
-        
-        _axis = Vector3.Cross(Vector3.up, direction);
+
         _pivotPoint = (direction / 2f) + (verticalComponent / 2f) + transform.position;
+        _axis = Vector3.Cross(Vector3.up, direction);
 
         StartCoroutine(Roll(_pivotPoint, _axis));
     }
@@ -56,15 +58,8 @@ public partial class CubeController : MonoBehaviour
         _rigidbody.isKinematic = false;
         _isMoving = false;
 
-        SnapPositionToInteger();
+        BlockChecker.SnapPositionInteger(transform);
     }
 
-    private void SnapPositionToInteger()
-    {
-        var pos = transform.position;
-        pos.x = Mathf.Round(pos.x);
-        pos.z = Mathf.Round(pos.z);
-
-        transform.position = pos;
-    }
+   
 }

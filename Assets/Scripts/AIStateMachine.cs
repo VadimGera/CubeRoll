@@ -1,8 +1,9 @@
-﻿using System;
+﻿/*using System;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
+    [RequireComponent(typeof(CubeController))]
     public class AIStateMachine : MonoBehaviour
     {
         private AiState _currentState;
@@ -10,27 +11,24 @@ namespace DefaultNamespace
 
         private void Start()
         {
-            _currentState = new WanderState();
+            _currentState = new WanderState(_startDirection);
+
             _cubeController = GetComponent<CubeController>();
         }
 
         private void Update()
         {
-            var direction = _currentState.GetDirection();
+            var direction = _currentState.GetDirection(transform.position);
+
             _cubeController.Move(direction);
+
+            _currentState.OnUpdate(Time.deltaTime);
+            var newState = _currentState.GetNextState();
+            if (newState != null)
+            {
+                _currentState = newState;
+            }
         }
     }
 
-    public abstract class AiState
-    { 
-        public abstract Vector3 GetDirection();
-    }
-
-    public class WanderState : AiState
-    {
-        public override Vector3 GetDirection()
-        {
-            return Vector3.forward;
-        }
-    }
-}
+}  */ 

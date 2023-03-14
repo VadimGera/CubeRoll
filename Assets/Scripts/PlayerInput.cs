@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-public partial class CubeController
-{
+[RequireComponent(typeof(CubeController))]
+
     public class PlayerInput : MonoBehaviour
     {
         private CubeController _cubeController;
@@ -36,4 +36,3 @@ public partial class CubeController
             }
         }
     }
-}
