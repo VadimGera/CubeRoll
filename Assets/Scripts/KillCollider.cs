@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DefaultNamespace
 {
@@ -16,15 +15,14 @@ namespace DefaultNamespace
             }
 
         }
-        /*
-         private void OnTriggerEnter(Collider collision)
-         
-         {
-          if (collision.gameObject.CompareTag(_playerTag))
+
+        private void OnTriggerEnter(Collider collision)
+        {
+            if (collision.gameObject.CompareTag(_playerTag))
             {
                 GameStateManager.Instance.Die();
             }
-            
-         }*/
+
+        }
     }
 }

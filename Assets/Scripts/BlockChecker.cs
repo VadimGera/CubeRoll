@@ -29,6 +29,5 @@ public static class BlockChecker
 
         transform.position = pos;
     }
-
-
-}
+}    
+    
