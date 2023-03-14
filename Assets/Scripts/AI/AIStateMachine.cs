@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -6,9 +6,10 @@ namespace DefaultNamespace
     [RequireComponent(typeof(CubeController))]
     public class AIStateMachine : MonoBehaviour
     {
-        private AiState _currentState;
+        [SerializeField] private Vector3 _startDirection = Vector3.forward;
+        
+        private IAiState _currentState;
         private CubeController _cubeController;
-
         private void Start()
         {
             _currentState = new WanderState(_startDirection);
@@ -31,4 +32,4 @@ namespace DefaultNamespace
         }
     }
 
-}  */ 
+}   

@@ -14,6 +14,11 @@ public static class BlockChecker
         return Physics.Raycast(position, direction, VectorLength);
     }
 
+    public static bool HasBlockInDirection(Vector3 position, Vector3 direction)
+    {
+        return Physics.Raycast(position + direction, Vector3.down, 1f);
+    }
+
 
 
     public static void SnapPositionInteger(Transform transform)
