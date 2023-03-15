@@ -17,8 +17,7 @@ namespace EventBarrier
         {
             if (isUplift)
             {
-                Transform cube = transform.GetChild(0);
-                cube.localPosition = Vector3.MoveTowards(cube.localPosition, Vector3.up / 1f, Time.deltaTime / 0.5f);
+                transform.position += new Vector3(0, Time.deltaTime * 0.2f, 0);
             }
         }
     }
