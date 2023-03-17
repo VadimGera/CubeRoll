@@ -4,7 +4,9 @@ namespace DefaultNamespace
 {
     public class GameStateManager : MonoBehaviour
     {
-        public static GameStateManager Instance;
+
+        private static GameStateManager _instance;
+        public static GameStateManager Instance => _instance;
         
         private bool _isDead = false;
         private GameObject _player;
@@ -17,12 +19,12 @@ namespace DefaultNamespace
                 return;
             }
             
-            Instance = this;
+            _instance = this;
         }
 
         private void Start()
         {
-            _player = FindObjectOfType<PlayerInput>().gameObject;
+            _player = FindObjectOfType<PlayerKeyboardInput>().gameObject;
         }
 
         public void Die()
