@@ -6,7 +6,6 @@ namespace DefaultNamespace
         where T : SingletonMonoBehaviour<T>
     {
         private static T _instance;
-        // Singleton pattern
         public static T Instance => _instance;
 
         private void Awake()
